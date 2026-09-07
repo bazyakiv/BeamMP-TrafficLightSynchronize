@@ -2,7 +2,7 @@ local M = {}
 
 function HandleServerTimer(data)
     local timer = tostring(data.timer_val)
-
+    log("I", "TrafficLightsClient", "Received timer value: " .. timer)
     core_trafficSignals.setTimer(tonumber(timer))
 end
 
