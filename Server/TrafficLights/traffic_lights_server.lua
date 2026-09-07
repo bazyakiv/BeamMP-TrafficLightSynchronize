@@ -7,11 +7,9 @@ end
 
 function  Update_tLight()
     if MP.GetPlayerCount() >= 1 then
-        local data = {
-            timer_val = t_Timer:GetCurrent()
-        }
 
-        MP.TriggerClientEventJson(-1., "t_LightSync", data)
-        print("Sent traffic light sync data to all clients.")
+        timer_val = t_Timer:GetCurrent()
+        MP.TriggerClientEvent(-1, "t_LightSync", tostring(timer_val))
+        -- print("Sent traffic light sync data to all clients.")
     end
 end

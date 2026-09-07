@@ -1,9 +1,14 @@
 local M = {}
 
-function HandleServerTimer(data)
-    local timer = tostring(data.timer_val)
-    log("I", "TrafficLightsClient", "Received timer value: " .. timer)
-    core_trafficSignals.setTimer(tonumber(timer))
+function HandleServerTimer(timerStr)
+    if timerStr then
+        local numTimer = tonumber(timerStr)
+        log("I", "TrafficLightsClient", "Received timer value: " .. tostring(numTimer))
+        core_trafficSignals.setTimer(numTimer)
+    else
+         log("W", "TrafficLightsClient", "Received timer value is nil")
+    end
+
 end
 
 function LoadedExtension()
@@ -14,7 +19,7 @@ function LoadedExtension()
 end
 
 M.onExtensionLoaded = LoadedExtension
-M.Init = function ()
+M.onInit = function ()
 	setExtensionUnloadMode(M, 'manual')
 end
 
